@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umer Jamil | AI Automation Engineer</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Modern Light "Frost" Theme */
+            --bg-deep: #f8fafc; /* Very light slate/white */
+            --bg-card: rgba(255, 255, 255, 0.65); /* Frosted Glass */
+            --bg-card-hover: rgba(255, 255, 255, 0.95);
+            --text-primary: #0f172a; /* Deep Slate (Not harsh black) */
+            --text-secondary: #475569; /* Medium Slate */
+            --accent-color: #2563eb; /* Professional Blue */
+            --accent-light: rgba(37, 99, 235, 0.1);
+            --border-color: rgba(226, 232, 240, 0.8);
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- AMBIENT BACKGROUND GLOW --- */
+        .ambient-glow {
+            position: fixed;
+            top: -30%;
+            right: -10%;
+            width: 80vw;
+            height: 80vh;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(248, 250, 252, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            left: -10%;
+            width: 70vw;
+            height: 70vh;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(248, 250, 252, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 100px 0 60px 0;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1.5px;
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            margin-bottom: 24px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .hero-bio {
+            max-width: 700px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* --- SECTION STYLES --- */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 48px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-primary);
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 24px;
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        /* --- TIMELINE (EXPERIENCE) --- */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -46px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            background: #ffffff;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 4px var(--bg-deep); /* White ring effect */
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-family: monospace;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: var(--text-primary);
+        }
+
+        .timeline-org {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .timeline-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .timeline-desc ul {
+            padding-left: 20px;
+        }
+
+        .timeline-desc li {
+            margin-bottom: 8px;
+        }
+
+        /* --- PROJECTS GRID --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-light);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+        }
+
+        .project-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .project-title a:hover {
+            color: var(--accent-color);
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .tag {
+            background: var(--accent-light);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.2s;
+        }
+
+        .btn-link:hover {
+            opacity: 1;
+            color: var(--accent-color);
+            gap: 10px; /* Slight animation */
+        }
+
+        /* --- EDUCATION CARD --- */
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .edu-info h3 { margin: 0 0 8px 0; font-size: 1.3rem; font-weight: 700; }
+        .edu-info p { margin: 0; color: var(--text-secondary); }
+        .edu-date { 
+            font-family: monospace; 
+            color: var(--accent-color); 
+            background: var(--accent-light);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 20px; font-size: 0.85rem; }
+            .edu-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="nav-logo">UJ.</a>
+            <div class="nav-links">
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+                <a href="https://github.com/Umer-Jamil-AI" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <section id="about" class="hero">
+            <h1>Umer Jamil</h1>
+            <span class="hero-subtitle">AI Automation Engineer | Tech Lead | R&D</span>
+            <p class="hero-bio">
+                Specializing in the architecture and deployment of Autonomous AI systems. 
+                I focus on building scalable intelligent agents, optimizing workflow automation, and bridging the gap between theoretical AI models and production-grade applications.
+                Currently pursuing advancement in Space Technology applications.
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/Umer-Jamil-AI" target="_blank" class="social-icon" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Sep 2025 - Jan 2026</div>
+                    <h3 class="timeline-title">Lead Automation Engineer</h3>
+                    <div class="timeline-org">Confidential E-commerce Client</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Engineered a full-stack autonomous agent capable of generating product titles, descriptions, and creative assets.</li>
+                            <li>Optimized listing workflows for global marketplaces (Amazon, TikTok Shop), reducing manual entry time by 90%.</li>
+                            <li>Deployed scalable n8n workflows to handle high-volume product data processing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Aug 2025 - Sep 2025</div>
+                    <h3 class="timeline-title">Developer & Architect</h3>
+                    <div class="timeline-org">Nexus AI Solutions</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Built a high-precision recruitment intelligence tool for automated talent sourcing.</li>
+                            <li>Implemented custom scraping algorithms to extract talent data from global repositories.</li>
+                            <li>Integrated LLM-based qualification logic to score candidates against complex job descriptions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Jun 2025 - Aug 2025</div>
+                    <h3 class="timeline-title">AI Automation Engineer</h3>
+                    <div class="timeline-org">ReasonRail</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Architected autonomous AI agent ecosystems to orchestrate complex business operations.</li>
+                            <li><strong>Workflow Strategy:</strong> Built state-based logic using LangGraph and n8n for autonomous decision-making.</li>
+                            <li><strong>Tactical Integration:</strong> Synced Gmail, QuickBooks, and Airtable to unify fragmented data streams.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Selected Projects</h2>
+            <div class="project-grid">
+
+                <div class="project-card">
+                    <h3 class="project-title"><a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/Supabase-OpenAI-RAG-Agent.json" target="_blank">Supabase RAG Engine</a></h3>
+                    <p class="project-desc">
+                        A knowledge retrieval pipeline injecting vectorized context into LLMs. 
+                        Utilizes Supabase Vector Store and OpenAI embeddings for high-precision semantic search.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tag">Supabase</span>
+                        <span class="tag">OpenAI</span>
+                        <span class="tag">Vector DB</span>
+                    </div>
+                    <a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/Supabase-OpenAI-RAG-Agent.json" target="_blank" class="btn-link">View Source <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title"><a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/AI-Meeting-Ops-Agent.json" target="_blank">AI Meeting Automation</a></h3>
+                    <p class="project-desc">
+                        Operational intelligence system that processes meeting audio. 
+                        Automates transcription, summarization, and extraction of actionable tasks.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tag">n8n</span>
+                        <span class="tag">Whisper</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                    <a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/AI-Meeting-Ops-Agent.json" target="_blank" class="btn-link">View Source <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title"><a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/AI-Qualifying-Booking-Agent.json" target="_blank">Smart Lead Qualification</a></h3>
+                    <p class="project-desc">
+                        Autonomous gatekeeper agent. Analyzes inbound leads against strict qualification criteria (BANT) before permitting calendar bookings.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tag">Workflow Automation</span>
+                        <span class="tag">CRM</span>
+                    </div>
+                    <a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/AI-Qualifying-Booking-Agent.json" target="_blank" class="btn-link">View Source <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title"><a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/HubSpot-Airtable-AI-Agent.json" target="_blank">CRM & Database Sync</a></h3>
+                    <p class="project-desc">
+                        Bi-directional sync engine between HubSpot and Airtable. 
+                        Uses LLMs to clean, enrich, and format data in transit, ensuring database integrity.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tag">HubSpot</span>
+                        <span class="tag">Airtable</span>
+                        <span class="tag">Data Ops</span>
+                    </div>
+                    <a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/HubSpot-Airtable-AI-Agent.json" target="_blank" class="btn-link">View Source <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title"><a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/Gmail-OpenAI-Drive-Archive.json" target="_blank">Automated Email Archiving</a></h3>
+                    <p class="project-desc">
+                        Compliance-focused archival system. Sanitizes sensitive data from Gmail inputs using OpenAI and securely logs correspondence to Drive.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tag">Gmail</span>
+                        <span class="tag">Google Drive</span>
+                        <span class="tag">Security</span>
+                    </div>
+                    <a href="https://github.com/Umer-Jamil-AI/n8n-projects/blob/main/Gmail-OpenAI-Drive-Archive.json" target="_blank" class="btn-link">View Source <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="edu-card">
+                <div class="edu-info">
+                    <h3>Bachelor of Science in Computer Science</h3>
+                    <p>Virtual University • Focus on Software Engineering & AI</p>
+                    <p style="font-size: 0.9rem; margin-top: 5px; color: var(--text-secondary);">Final Year Project: AI Applications in Space Technology</p>
+                </div>
+                <div class="edu-date">2023 - 2027 (Expected)</div>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 Umer Jamil. All rights reserved.
+        </footer>
+
+    </div>
+
+</body>
+</html>
